@@ -1,0 +1,712 @@
+%PDF-1.3
+%“Œ‹ž ReportLab Generated PDF document http://www.reportlab.com
+% 'BasicFonts': class PDFDictionary 
+1 0 obj
+% The standard fonts dictionary
+<< /F1 2 0 R
+ /F2 3 0 R
+ /F3 4 0 R
+ /F4 6 0 R
+ /F5 8 0 R
+ /F6 9 0 R
+ /F7 10 0 R >>
+endobj
+% 'F1': class PDFType1Font 
+2 0 obj
+% Font Helvetica
+<< /BaseFont /Helvetica
+ /Encoding /WinAnsiEncoding
+ /Name /F1
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'F2': class PDFType1Font 
+3 0 obj
+% Font Helvetica-Bold
+<< /BaseFont /Helvetica-Bold
+ /Encoding /WinAnsiEncoding
+ /Name /F2
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'F3': class PDFType1Font 
+4 0 obj
+% Font Times-Roman
+<< /BaseFont /Times-Roman
+ /Encoding /WinAnsiEncoding
+ /Name /F3
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'Annot.NUMBER1': class PDFDictionary 
+5 0 obj
+<< /A << /S /URI
+ /Type /Action
+ /URI (mailto:ikkini@gmail.com) >>
+ /Border [ 0
+ 0
+ 0 ]
+ /Rect [ 184.5723
+ 722.5936
+ 262.5023
+ 734.5936 ]
+ /Subtype /Link
+ /Type /Annot >>
+endobj
+% 'F4': class PDFType1Font 
+6 0 obj
+% Font Helvetica-BoldOblique
+<< /BaseFont /Helvetica-BoldOblique
+ /Encoding /WinAnsiEncoding
+ /Name /F4
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'Annot.NUMBER2': class PDFDictionary 
+7 0 obj
+<< /A << /S /URI
+ /Type /Action
+ /URI (http://en.wikipedia.org/wiki/Willem_Barentsz) >>
+ /Border [ 0
+ 0
+ 0 ]
+ /Rect [ 78.69291
+ 580.5936
+ 516.5827
+ 592.5936 ]
+ /Subtype /Link
+ /Type /Annot >>
+endobj
+% 'F5': class PDFType1Font 
+8 0 obj
+% Font Courier
+<< /BaseFont /Courier
+ /Encoding /WinAnsiEncoding
+ /Name /F5
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'F6': class PDFType1Font 
+9 0 obj
+% Font Courier-Oblique
+<< /BaseFont /Courier-Oblique
+ /Encoding /WinAnsiEncoding
+ /Name /F6
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'F7': class PDFType1Font 
+10 0 obj
+% Font Courier-Bold
+<< /BaseFont /Courier-Bold
+ /Encoding /WinAnsiEncoding
+ /Name /F7
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'Annot.NUMBER3': class LinkAnnotation 
+11 0 obj
+<< /Border [ 0
+ 0
+ 0 ]
+ /Contents ()
+ /Dest [ 12 0 R
+ /XYZ
+ 62.69291
+ 182.0536
+ 0 ]
+ /Rect [ 317.7729
+ 190.3936
+ 378.3529
+ 202.3936 ]
+ /Subtype /Link
+ /Type /Annot >>
+endobj
+% 'Page1': class PDFPage 
+12 0 obj
+% Page dictionary
+<< /Annots [ 5 0 R
+ 7 0 R
+ 11 0 R ]
+ /Contents 26 0 R
+ /MediaBox [ 0
+ 0
+ 595.2756
+ 841.8898 ]
+ /Parent 25 0 R
+ /Resources << /Font 1 0 R
+ /ProcSet [ /PDF
+ /Text
+ /ImageB
+ /ImageC
+ /ImageI ] >>
+ /Rotate 0
+ /Trans <<  >>
+ /Type /Page >>
+endobj
+% 'Annot.NUMBER4': class PDFDictionary 
+13 0 obj
+<< /A << /S /URI
+ /Type /Action
+ /URI (http://en.wikipedia.org/wiki/Stochastic_process) >>
+ /Border [ 0
+ 0
+ 0 ]
+ /Rect [ 245.5229
+ 435.3936
+ 327.7729
+ 447.3936 ]
+ /Subtype /Link
+ /Type /Annot >>
+endobj
+% 'Page2': class PDFPage 
+14 0 obj
+% Page dictionary
+<< /Annots [ 13 0 R ]
+ /Contents 27 0 R
+ /MediaBox [ 0
+ 0
+ 595.2756
+ 841.8898 ]
+ /Parent 25 0 R
+ /Resources << /Font 1 0 R
+ /ProcSet [ /PDF
+ /Text
+ /ImageB
+ /ImageC
+ /ImageI ] >>
+ /Rotate 0
+ /Trans <<  >>
+ /Type /Page >>
+endobj
+% 'R15': class PDFCatalog 
+15 0 obj
+% Document Root
+<< /Outlines 17 0 R
+ /PageLabels 28 0 R
+ /PageMode /UseNone
+ /Pages 25 0 R
+ /Type /Catalog >>
+endobj
+% 'R16': class PDFInfo 
+16 0 obj
+<< /Author (ikkini <ikkini@gmail.com>)
+ /CreationDate (D:20111211141339-01'00')
+ /Keywords ()
+ /Producer (ReportLab http://www.reportlab.com)
+ /Subject (\(unspecified\))
+ /Title (barentsz.py Host Dicovery Tool) >>
+endobj
+% 'R17': class PDFOutlines 
+17 0 obj
+<< /Count 9
+ /First 18 0 R
+ /Last 18 0 R
+ /Type /Outlines >>
+endobj
+% 'Outline.0': class OutlineEntryObject 
+18 0 obj
+<< /Count 6
+ /Dest [ 12 0 R
+ /XYZ
+ 62.69291
+ 543.0236
+ 0 ]
+ /First 19 0 R
+ /Last 21 0 R
+ /Parent 17 0 R
+ /Title (Why cb.py?) >>
+endobj
+% 'Outline.8.0': class OutlineEntryObject 
+19 0 obj
+<< /Dest [ 12 0 R
+ /XYZ
+ 62.69291
+ 276.8236
+ 0 ]
+ /Next 20 0 R
+ /Parent 18 0 R
+ /Title (cb.targets) >>
+endobj
+% 'Outline.8.1': class OutlineEntryObject 
+20 0 obj
+<< /Dest [ 12 0 R
+ /XYZ
+ 62.69291
+ 174.8236
+ 0 ]
+ /Next 21 0 R
+ /Parent 18 0 R
+ /Prev 19 0 R
+ /Title (cb.concurrent) >>
+endobj
+% 'Outline.8.2': class OutlineEntryObject 
+21 0 obj
+<< /Count 3
+ /Dest [ 14 0 R
+ /XYZ
+ 62.69291
+ 635.8236
+ 0 ]
+ /First 22 0 R
+ /Last 24 0 R
+ /Parent 18 0 R
+ /Prev 20 0 R
+ /Title (cb.inter, cb.retry, cb.timeout) >>
+endobj
+% 'Outline.9.0': class OutlineEntryObject 
+22 0 obj
+<< /Dest [ 14 0 R
+ /XYZ
+ 62.69291
+ 419.8236
+ 0 ]
+ /Next 23 0 R
+ /Parent 21 0 R
+ /Title (timeout) >>
+endobj
+% 'Outline.9.1': class OutlineEntryObject 
+23 0 obj
+<< /Dest [ 14 0 R
+ /XYZ
+ 62.69291
+ 350.8236
+ 0 ]
+ /Next 24 0 R
+ /Parent 21 0 R
+ /Prev 22 0 R
+ /Title (retry) >>
+endobj
+% 'Outline.9.2': class OutlineEntryObject 
+24 0 obj
+<< /Dest [ 14 0 R
+ /XYZ
+ 62.69291
+ 257.8236
+ 0 ]
+ /Parent 21 0 R
+ /Prev 23 0 R
+ /Title (inter) >>
+endobj
+% 'R25': class PDFPages 
+25 0 obj
+% page tree
+<< /Count 2
+ /Kids [ 12 0 R
+ 14 0 R ]
+ /Type /Pages >>
+endobj
+% 'R26': class PDFStream 
+26 0 obj
+% page stream
+<< /Length 6704 >>
+stream
+1 0 0 1 0 0 cm BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 62.69291 741.0236 cm
+q
+BT 1 0 0 1 0 9.64 Tm 85.46488 0 Td 24 TL /F2 20 Tf 0 0 0 rg (barentsz.py Host Dicovery Tool) Tj T* -85.46488 0 Td ET
+Q
+Q
+q
+1 0 0 1 62.69291 716.0236 cm
+0 0 0 rg
+BT /F3 10 Tf 12 TL ET
+q
+1 0 0 1 6 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F2 10 Tf 12 TL 36.93937 0 Td (Author:) Tj T* -36.93937 0 Td ET
+Q
+Q
+q
+1 0 0 1 91.03937 3 cm
+q
+BT 1 0 0 1 0 4.82 Tm 12 TL /F1 10 Tf 0 0 0 rg (ikkini <) Tj 0 0 .501961 rg (ikkini@gmail.com) Tj 0 0 0 rg (>) Tj T* ET
+Q
+Q
+q
+Q
+Q
+q
+1 0 0 1 62.69291 701.0236 cm
+0 0 0 rg
+BT /F3 10 Tf 12 TL ET
+q
+1 0 0 1 6 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F2 10 Tf 12 TL 33.02937 0 Td (Version:) Tj T* -33.02937 0 Td ET
+Q
+Q
+q
+1 0 0 1 91.03937 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F1 10 Tf 12 TL (0.1) Tj T* ET
+Q
+Q
+q
+Q
+Q
+q
+1 0 0 1 62.69291 686.0236 cm
+0 0 0 rg
+BT /F3 10 Tf 12 TL ET
+q
+1 0 0 1 6 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F2 10 Tf 12 TL 28.02937 0 Td (Revision:) Tj T* -28.02937 0 Td ET
+Q
+Q
+q
+1 0 0 1 91.03937 3 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F1 10 Tf 12 TL (0.1) Tj T* ET
+Q
+Q
+q
+Q
+Q
+q
+1 0 0 1 62.69291 674.0236 cm
+Q
+q
+1 0 0 1 62.69291 561.0236 cm
+.960784 .960784 .862745 rg
+n 0 113 469.8898 -113 re f*
+0 0 0 rg
+BT /F3 10 Tf 12 TL ET
+BT 1 0 0 1 6 87 Tm  T* ET
+q
+1 0 0 1 16 82 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 6.025 Tm /F4 12.5 Tf 15 TL (Note) Tj T* ET
+Q
+Q
+q
+1 0 0 1 16 34 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 28.82 Tm /F1 10 Tf 12 TL 2.41436 Tw ("[...] the crew came across a herd of approximately 200 walruses and tried to kill them with) Tj T* 0 Tw 1.41811 Tw (hatchets and pikes. Finding the task more difficult than they imagined, they left with only a few) Tj T* 0 Tw (ivory tusks.") Tj T* ET
+Q
+Q
+q
+1 0 0 1 16 16 cm
+q
+0 0 .501961 rg
+0 0 .501961 RG
+BT 1 0 0 1 0 4.82 Tm /F1 10 Tf 12 TL (http://en.wikipedia.org/wiki/Willem_Barentsz) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.662745 .662745 .662745 RG
+.5 w
+n 0 113 m 469.8898 113 l S
+n 0 0 m 469.8898 0 l S
+n 0 0 m 0 113 l S
+n 469.8898 0 m 469.8898 113 l S
+Q
+Q
+q
+1 0 0 1 62.69291 555.0236 cm
+Q
+q
+1 0 0 1 62.69291 522.0236 cm
+q
+BT 1 0 0 1 0 8.435 Tm 21 TL /F2 17.5 Tf 0 0 0 rg (Why cb.py?) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 308.8236 cm
+q
+q
+1 0 0 1 0 0 cm
+q
+1 0 0 1 6.6 6.6 cm
+q
+.662745 .662745 .662745 RG
+.5 w
+.960784 .960784 .862745 rg
+n -6 -6 468.6898 204 re B*
+Q
+q
+BT 1 0 0 1 0 185.71 Tm 12 TL /F5 10 Tf 0 0 0 rg (targets) Tj ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj ([) Tj .729412 .129412 .129412 rg ('192.168.0.0/24') Tj 0 0 0 rg (,) Tj .729412 .129412 .129412 rg ('10.0.0.1') Tj 0 0 0 rg (]) Tj  T* /F6 10 Tf .25098 .501961 .501961 rg (# -- Options) Tj /F5 10 Tf 0 0 0 rg  T* (inter) Tj .4 .4 .4 rg (=) Tj (0) Tj 0 0 0 rg  T* (retry) Tj .4 .4 .4 rg (=-) Tj (2) Tj 0 0 0 rg  T* (timeout) Tj .4 .4 .4 rg (=) Tj (3) Tj 0 0 0 rg  T* (concurrent) Tj .4 .4 .4 rg (=) Tj (256) Tj 0 0 0 rg  T* (toptcpports) Tj .4 .4 .4 rg (=) Tj (7) Tj 0 0 0 rg ( ) Tj /F6 10 Tf .25098 .501961 .501961 rg (# all = 4238, taken from http://nmap.org/svn/nmap-services) Tj /F5 10 Tf 0 0 0 rg  T* /F7 10 Tf 0 .501961 0 rg (from) Tj /F5 10 Tf 0 0 0 rg ( ) Tj /F7 10 Tf 0 0 1 rg (datetime) Tj /F5 10 Tf 0 0 0 rg ( ) Tj /F7 10 Tf 0 .501961 0 rg (import) Tj /F5 10 Tf 0 0 0 rg ( ) Tj (datetime) Tj  T* (timestamp) Tj ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj (datetime) Tj .4 .4 .4 rg (.) Tj 0 0 0 rg (now) Tj (\(\)) Tj .4 .4 .4 rg (.) Tj 0 0 0 rg (strftime) Tj (\() Tj .729412 .129412 .129412 rg ("%Y%m) Tj /F7 10 Tf .733333 .4 .533333 rg (%d) Tj /F5 10 Tf .729412 .129412 .129412 rg (.%H%M%S") Tj 0 0 0 rg (\)) Tj  T* (database) Tj ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj (timestamp) Tj ( ) Tj .4 .4 .4 rg (+) Tj 0 0 0 rg ( ) Tj .729412 .129412 .129412 rg ('.barentsz.db') Tj 0 0 0 rg  T* /F7 10 Tf 0 .501961 0 rg (import) Tj /F5 10 Tf 0 0 0 rg ( ) Tj /F7 10 Tf 0 0 1 rg (random) Tj /F5 10 Tf 0 0 0 rg  T* (randport) Tj ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj (random) Tj .4 .4 .4 rg (.) Tj 0 0 0 rg (randrange) Tj (\() Tj .4 .4 .4 rg (1025) Tj 0 0 0 rg (,) Tj .4 .4 .4 rg (65535) Tj 0 0 0 rg (\)) Tj  T*  T* /F6 10 Tf .25098 .501961 .501961 rg (# -- PROTOCOLS) Tj /F5 10 Tf 0 0 0 rg  T* (ICMPtypes) Tj ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj ([) Tj .4 .4 .4 rg (8) Tj 0 0 0 rg (,) Tj .4 .4 .4 rg (13) Tj 0 0 0 rg (,) Tj .4 .4 .4 rg (15) Tj 0 0 0 rg (,) Tj .4 .4 .4 rg (17) Tj 0 0 0 rg (]) Tj  T* (UDPports) Tj ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj ([) Tj .4 .4 .4 rg (161) Tj 0 0 0 rg (,) Tj .4 .4 .4 rg (500) Tj 0 0 0 rg (,) Tj .4 .4 .4 rg (4500) Tj 0 0 0 rg (,) Tj (randport) Tj (]) Tj T* ET
+Q
+Q
+Q
+Q
+Q
+q
+1 0 0 1 62.69291 288.8236 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F1 10 Tf 12 TL (cb.py contains a collection of settings and stuff such as "payloads". Let me take you through them.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 258.8236 cm
+q
+BT 1 0 0 1 0 7.23 Tm 18 TL /F2 15 Tf 0 0 0 rg (cb.targets) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 216.8236 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 28.82 Tm /F1 10 Tf 12 TL .541488 Tw (I've chosen to set the targets here and not on the command line because I'm a lazy bum. I actually have) Tj T* 0 Tw .512988 Tw (some code which will do this fine for one ip address or CIDR range, but not for a list of target\(s/-ranges\).) Tj T* 0 Tw (For now, I just edit the ranges here, but probably this will change in the future.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 186.8236 cm
+q
+BT 1 0 0 1 0 16.82 Tm .511988 Tw 12 TL /F1 10 Tf 0 0 0 rg (The list of strings will go to netaddr, which will create lists of IP addresses and put them in the database.) Tj T* 0 Tw (barentsz.py will read them in batches \(as lists\), limited by ) Tj 0 0 .501961 rg (cb.concurrent) Tj 0 0 0 rg (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 156.8236 cm
+q
+BT 1 0 0 1 0 7.23 Tm 18 TL /F2 15 Tf 0 0 0 rg (cb.concurrent) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 114.8236 cm
+q
+BT 1 0 0 1 0 28.82 Tm 1.551353 Tw 12 TL /F1 10 Tf 0 0 0 rg (Scapy will gladly build you a list of packets to be send out for a /8 with 65535 ports per hosts. It will) Tj T* 0 Tw .305251 Tw (completely rape your RAM and perhaps in the end fail because of allocation limits, but by the Gods, it will) Tj T* 0 Tw (try. That is why I've added a ) Tj /F2 10 Tf (cb.concurrent ) Tj /F1 10 Tf (option.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 84.82362 cm
+q
+BT 1 0 0 1 0 16.82 Tm 1.591988 Tw 12 TL /F1 10 Tf 0 0 0 rg (If you decide to send a packet to 4238 ports on 16777214 hosts, you can use this option to select a ) Tj T* 0 Tw .257485 Tw (suitable batch-size. The ) Tj /F2 10 Tf (itsAlive ) Tj /F1 10 Tf (function, using a SELECT statement, will filter in any hosts not yet found) Tj T* 0 Tw ET
+Q
+Q
+ 
+endstream
+
+endobj
+% 'R27': class PDFStream 
+27 0 obj
+% page stream
+<< /Length 5468 >>
+stream
+1 0 0 1 0 0 cm BT /F1 12 Tf 14.4 TL ET
+q
+1 0 0 1 62.69291 753.0236 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F1 10 Tf 12 TL (alive \(alive=0\). With a bit of luck, this means you'll send out less and less packets as you go.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 647.8236 cm
+q
+q
+1 0 0 1 0 0 cm
+q
+1 0 0 1 6.6 6.6 cm
+q
+.662745 .662745 .662745 RG
+.5 w
+.960784 .960784 .862745 rg
+n -6 -6 468.6898 96 re B*
+Q
+q
+BT 1 0 0 1 0 77.71 Tm 12 TL /F7 10 Tf 0 .501961 0 rg (def) Tj /F5 10 Tf 0 0 0 rg ( ) Tj 0 0 1 rg (itsAlive) Tj 0 0 0 rg (\() Tj 0 .501961 0 rg (max) Tj 0 0 0 rg (,) Tj (start) Tj (\):) Tj  T* (    ) Tj (T) Tj ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj ([]) Tj  T* (    ) Tj (cur) Tj .4 .4 .4 rg (.) Tj 0 0 0 rg (execute) Tj (\() Tj .729412 .129412 .129412 rg ('SELECT ip from ips where alive=0 limit ?,?') Tj 0 0 0 rg (,) Tj ( ) Tj (\() Tj 0 .501961 0 rg (max) Tj 0 0 0 rg (,) Tj (start) Tj (\)\)) Tj  T* (    ) Tj (rows) Tj ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj (cur) Tj .4 .4 .4 rg (.) Tj 0 0 0 rg (fetchall) Tj (\(\)) Tj  T* (    ) Tj /F7 10 Tf 0 .501961 0 rg (for) Tj /F5 10 Tf 0 0 0 rg ( ) Tj (row) Tj ( ) Tj /F7 10 Tf .666667 .133333 1 rg (in) Tj /F5 10 Tf 0 0 0 rg ( ) Tj (rows) Tj (:) Tj  T* (        ) Tj (T) Tj .4 .4 .4 rg (.) Tj 0 0 0 rg (append) Tj (\() Tj (row) Tj ([) Tj .729412 .129412 .129412 rg ('ip') Tj 0 0 0 rg (]\)) Tj  T* (    ) Tj /F7 10 Tf 0 .501961 0 rg (return) Tj /F5 10 Tf 0 0 0 rg ( ) Tj (T) Tj T* ET
+Q
+Q
+Q
+Q
+Q
+q
+1 0 0 1 62.69291 617.8236 cm
+q
+BT 1 0 0 1 0 7.23 Tm 18 TL /F2 15 Tf 0 0 0 rg (cb.inter, cb.retry, cb.timeout) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 599.8236 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F1 10 Tf 12 TL (Like the options themselves, their description is taken straight from scapy \(documentation\):) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 569.8236 cm
+0 0 0 rg
+BT /F3 10 Tf 12 TL ET
+q
+1 0 0 1 0 15 cm
+q
+BT 1 0 0 1 0 4.82 Tm 12 TL /F2 10 Tf 0 0 0 rg (inter : ) Tj /F4 10 Tf (sr\(inter=,\)) Tj T* ET
+Q
+Q
+BT 1 0 0 1 0 2 Tm  T* ET
+q
+1 0 0 1 10 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F1 10 Tf 12 TL (Time in seconds to wait between 2 packets) Tj T* ET
+Q
+Q
+q
+Q
+Q
+q
+1 0 0 1 62.69291 515.8236 cm
+0 0 0 rg
+BT /F3 10 Tf 12 TL ET
+q
+1 0 0 1 0 39 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 4.82 Tm /F2 10 Tf 12 TL (retry: sr\(retry=,\)) Tj T* ET
+Q
+Q
+BT 1 0 0 1 0 26 Tm  T* ET
+q
+1 0 0 1 10 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 28.82 Tm /F1 10 Tf 12 TL 2.092093 Tw (If retry is 3, scapy will try to resend unanswered packets 3 times. If retry is -3, scapy will resend) Tj T* 0 Tw .106098 Tw (unanswered packets until no more answer is given for the same set of unanswered packets 3 times in a) Tj T* 0 Tw (row.) Tj T* ET
+Q
+Q
+q
+Q
+Q
+q
+1 0 0 1 62.69291 473.8236 cm
+0 0 0 rg
+BT /F3 10 Tf 12 TL ET
+q
+1 0 0 1 0 27 cm
+q
+BT 1 0 0 1 0 4.82 Tm 12 TL /F2 10 Tf 0 0 0 rg (timeout : ) Tj /F4 10 Tf (sr\(timeout=,\)) Tj T* ET
+Q
+Q
+BT 1 0 0 1 0 14 Tm  T* ET
+q
+1 0 0 1 10 0 cm
+q
+0 0 0 rg
+BT 1 0 0 1 0 16.82 Tm /F1 10 Tf 12 TL .512488 Tw (How much time to wait after the last packet has been sent. By default, sr will wait forever and the user) Tj T* 0 Tw (will have to interrupt \(Ctrl-C\) it when he expects no more answers.) Tj T* ET
+Q
+Q
+q
+Q
+Q
+q
+1 0 0 1 62.69291 431.8236 cm
+q
+BT 1 0 0 1 0 28.82 Tm .506098 Tw 12 TL /F1 10 Tf 0 0 0 rg (Discovering hosts is a hard thing to do. Lots of things can go wrong, for unforseen reasons, with packets) Tj T* 0 Tw .926655 Tw (roaming the interwebs on their own. You will not know what you'll find \(or not\), until you try. Or to put it) Tj T* 0 Tw (formally, discovery is by its very nature a ) Tj 0 0 .501961 rg (stochastic process) Tj 0 0 0 rg (.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 404.8236 cm
+q
+BT 1 0 0 1 0 6.025 Tm 15 TL /F4 12.5 Tf 0 0 0 rg (timeout) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 362.8236 cm
+q
+BT 1 0 0 1 0 28.82 Tm .452093 Tw 12 TL /F1 10 Tf 0 0 0 rg (It can help to give packets some time to find their way back to you. Increasing ) Tj /F2 10 Tf (timeout ) Tj /F1 10 Tf (will probably help) Tj T* 0 Tw .687633 Tw (you there. Increase it too much, and you'll pobably find you've run out of patience before you've finished) Tj T* 0 Tw (the scan.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 335.8236 cm
+q
+BT 1 0 0 1 0 6.025 Tm 15 TL /F4 12.5 Tf 0 0 0 rg (retry) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 269.8236 cm
+q
+BT 1 0 0 1 0 52.82 Tm .07104 Tw 12 TL /F2 10 Tf 0 0 0 rg (retry ) Tj /F1 10 Tf (is one of the smartest functions of scapy \(and there are a lot!\), especially the minus \(-\) option. Scapy) Tj T* 0 Tw .69881 Tw (keeps track of unanswered packets and does not scan the whole batch again every retry. Not only does) Tj T* 0 Tw .568221 Tw (this decrease the footprint of your scanning on the target range, it also means that the \(network\) devices) Tj T* 0 Tw 1.149988 Tw (do not have to handle the full load every time. This could mean they can take their time to answer the) Tj T* 0 Tw (packets they could not answer before.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 242.8236 cm
+q
+BT 1 0 0 1 0 6.025 Tm 15 TL /F4 12.5 Tf 0 0 0 rg (inter) Tj T* ET
+Q
+Q
+q
+1 0 0 1 62.69291 212.8236 cm
+q
+BT 1 0 0 1 0 16.82 Tm .339986 Tw 12 TL /F1 10 Tf 0 0 0 rg (To decrease the network load even further, you can increase the ) Tj /F2 10 Tf (inter ) Tj /F1 10 Tf (settting. Again, there is a optimum) Tj T* 0 Tw (which depends at least partly on your patience, so I have no idea what the "best" setting would be.) Tj T* ET
+Q
+Q
+ 
+endstream
+
+endobj
+% 'R28': class PDFPageLabels 
+28 0 obj
+% Document Root
+<< /Nums [ 0
+ 29 0 R
+ 1
+ 30 0 R ] >>
+endobj
+% 'R29': class PDFPageLabel 
+29 0 obj
+% None
+<< /S /D
+ /St 1 >>
+endobj
+% 'R30': class PDFPageLabel 
+30 0 obj
+% None
+<< /S /D
+ /St 2 >>
+endobj
+xref
+0 31
+0000000000 65535 f
+0000000113 00000 n
+0000000282 00000 n
+0000000447 00000 n
+0000000622 00000 n
+0000000803 00000 n
+0000001032 00000 n
+0000001233 00000 n
+0000001483 00000 n
+0000001644 00000 n
+0000001821 00000 n
+0000002006 00000 n
+0000002233 00000 n
+0000002564 00000 n
+0000002816 00000 n
+0000003118 00000 n
+0000003277 00000 n
+0000003544 00000 n
+0000003669 00000 n
+0000003869 00000 n
+0000004042 00000 n
+0000004233 00000 n
+0000004468 00000 n
+0000004638 00000 n
+0000004821 00000 n
+0000004971 00000 n
+0000005088 00000 n
+0000011893 00000 n
+0000017466 00000 n
+0000017572 00000 n
+0000017649 00000 n
+trailer
+<< /ID 
+ % ReportLab generated PDF document -- digest (http://www.reportlab.com) 
+ [(\241\020\2358V!\004\264D\266Yc\012\337Dv) (\241\020\2358V!\004\264D\266Yc\012\337Dv)] 
+
+ /Info 16 0 R
+ /Root 15 0 R
+ /Size 31 >>
+startxref
+17696
+%%EOF
