@@ -143,7 +143,7 @@ else:
     if options.CONTINUE:
        pass
     else:
-       print "database % already exists." % (PREFIX + "_barentsz.db")
+       print "database %s already exists." % (PREFIX + "_barentsz.db")
        print 'please use "-c" or "--continue" if you want to continue using a previous database'
        exit(1)
 
