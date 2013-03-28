@@ -12,6 +12,26 @@ barentsz.py Host Dicovery Tool
    http://en.wikipedia.org/wiki/Willem_Barentsz
 
 
+
+Initial setup
+=============
+
+#. Be sure you have the right python in your environment
+
+#. Adding missing dependencies is usually as simple as adding a port (such as scapy) and sometimes a little more complicated, as for instance with adding netaddr:
+
+.. code-block:: shell
+
+   sudo port install py27-distribute
+   --->  Computing dependencies for py27-distribute
+   --->  Cleaning py27-distribute
+   --->  Scanning binaries for linking errors: 100.0%
+   --->  No broken files found.
+   sudo easy_install netaddr
+
+
+..
+
 Why cb.py?
 ==========
 

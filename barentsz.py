@@ -1,60 +1,92 @@
-#!/usr/bin/env python
-# This tool scratches a very particular itch in a very personal way: host discovery done My Way (and yes, I'm a scripter, not coder).
-# YMMV
-# To view results, do something like: sqlite3 --header <cb.timestamp>.barentsz.db ' select * from ips where alive = 1;'
+#!/opt/local/bin/python2.7
 
+# The line above is macOS specific (YMMV). 
+# Replace it with the line below if you have the right python as an environmental setting: 
+##!/usr/bin/env python
+
+# This tool scratches a very particular itch in a very personal way: host discovery done My Way.
+# YMMV
+# To view results, do something like: sqlite3 --header <PREFIX>.barentsz.db ' select * from ips where alive = 1;'
+
+# development timer option
 #class Timer():
 #    def __enter__(self): self.start = time.time()
 #    def __exit__(self, *args): print time.time() - self.start
 
+# check for root access (we are going to abuse network interfaces, you'l need it)
+import os,sys
+if os.geteuid() != 0:
+    print "sorry, you need to run this as root"
+    exit(1)
+
+# XXX will have to change to only be a source of payloads
 import cb
 
 if cb.UNREAD:
-    print """cb.py is where you configure your targets.
-             Please Have a look at that file first"""
-    exit(1)
-try:
-   open(cb.timestamp + ".barentsz.db")
-except IOError as e:
-    pass
-else:
-    print 'Oh dear...'
-    print 'Please move %s and possibly %s and %s out of the way first' % (cb.timestamp + '.barentsz.db',cb.timestamp + '.barentsz.pcap', cb.timestamp + '.barentsz.log')
+    print """cb.py is where you configure your targets and settings.
+             Please have a look at that file first"""
     exit(1)
 
+# import necessary default libraries
+import sys, socket, struct, zlib, warnings, time, random
 
 # supress IPV6 WARNING at startup
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
-import sys, socket, struct, zlib, warnings, time, random
-
 # needed for logging
 from datetime import datetime
 
+# libraries not available by default
 try:
     from scapy.all import *
 except:
     print "install scapy"
     print "http://www.secdev.org/projects/scapy/"
-
+    exit(1)
 try:
     from netaddr import *
 except:
     print "install netaddr"
     print "http://pypi.python.org/pypi/netaddr"
+    exit(1)
 
 try:
     import sqlite3 as lite
 except:
     print "install sqlite3"
     print "http://www.sqlite.org/"
+    exit(1)
 
-# option parsing
+# command line options 
 from optparse import OptionParser
 #
 parser = OptionParser()
-#
+
+# prefix
+parser.add_option('-p', '--prefix',
+                    action="store",
+                    default=False,
+                    dest="PREFIX",
+		    type="string",
+                    help='Prefix for the log + database files, default none')
+
+# continue
+parser.add_option('-c', '--continue',
+                    action="store_true",
+                    dest="CONTINUE",
+                    default=False,
+                    help='continue with the previous logs/database')
+
+# interface selection
+parser.add_option("-I", "--interface",
+                    action="store",
+                    dest="IFACE",
+                    default=False,
+                    help="interface name, like eth0 or en1, not normally required, currently " + conf.iface,
+                    type="string")
+
+# scantypes
 parser.add_option('-i', '--icmp',
                     action="store_true",
                     dest="ICMP",
@@ -91,34 +123,52 @@ parser.add_option('-s', '--snmp',
                     default=False,
                     help='Run SNMP checks')
 
-parser.add_option("-I", "--interface",
-                    action="store",
-                    dest="IFACE",
-                    default=False,
-                    help="interface name, like eth0 or en1, not normally required, currently " + conf.iface,
-                    type="string")
-
+# option parsing
 (options, args) = parser.parse_args()
 
+# check for prefix
+if options.PREFIX:
+    PREFIX = str(options.PREFIX)
+else:
+    PREFIX = ''
+
+# Open database, support resuming scans
+try:
+   open(PREFIX + "barentsz.db")
+except IOError as e:
+    print 'Starting with a new database'
+    pass
+else:
+    if options.CONTINUE:
+       pass
+    else:
+       print "database % already exists." % (PREFIX + "barentsz.db")
+       print 'please use "-c" or "--continue" if you want to continue using a previous database'
+       exit(1)
+
+# check for interface option
 if options.IFACE:
     conf.iface = options.IFACE
 
+# set option selection
 if options.ICMP or options.UDP or options.TCP or options.DNS or options.IKE or options.SNMP:
     options.ALL = False
 else:
     options.ALL = True
 
-# XXX must be a better way to find our local IP?
+# XXX there must be a better way to find our local IP?
 cb.scannerip = [x[4] for x in scapy.all.conf.route.routes if x[2] != '0.0.0.0'][0]
 
+# get the batchsize
 concurrent = cb.concurrent
-pcapfile = cb.timestamp + ".barentsz.pcap"
+
+# define the pcap file
+pcapfile = PREFIX + "barentsz.pcap"
 
 # We want a start time for our log
 starttime = str(datetime.now())
 
 # Only test IP if not found live yet, do so in batches
-# XXX needs fixing to use SELECT to filter non-alive hosts
 def itsAlive(max,start):
     T = []
     cur.execute('SELECT ip from ips where alive=0 limit ?,?', (max,start))
@@ -127,23 +177,26 @@ def itsAlive(max,start):
         T.append(row['ip'])
     return T
 
-# create database
-con = lite.connect(cb.database)
+# create/ connect to database
+database = PREFIX + 'barentsz.db'
+con = lite.connect(database)
 with con:
     cur = con.cursor()
 
-    # IP's should be unique
-    cur.execute("CREATE TABLE ips(ip STRING UNIQUE, alive BOOLEAN default 0, ttl INT, type STRING, info1 INT, info2 INT)")
+    # ips should be unique
+    cur.execute("CREATE TABLE ips(ip STRING UNIQUE, alive BOOLEAN default 0, ttl INT, type STRING, iperror INT default 0, seen INT default 0)")
     # XXX with Timer():
     # if cb.targets_iter exists, it takes precendence
     if cb.targets_iter:
         cb.targets = list(iter_iprange(cb.targets_iter[0], cb.targets_iter[1]))
+
     for target in cb.targets:
         IPs = []
         for ip in IPNetwork(target):
             item =  str(ip)
             cur.execute('INSERT OR IGNORE INTO ips (ip) VALUES (?)', [item])
     cur.execute('SELECT count(ip) from ips')
+
     # get total number of rows in a table
     total = cur.fetchall()[0][0]
 print "You are going to scan %s IP addresses" % (total)
@@ -167,9 +220,9 @@ if options.ICMP or options.ALL:
                     writer.write(answer)
                     for l in answer:
                         if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', (1,'ICMP',l[IP].ttl,l[ICMP].type,l[ICMP].code,l[IPerror].dst))
+                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen= seen + ? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
                         elif l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', [1,'ICMP',l[IP].ttl,l[ICMP].type,l[ICMP].code,l[IP].src])
+                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen= seen + ? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IP].src])
                 writer.close()
         counter += concurrent
 
@@ -192,13 +245,13 @@ if options.UDP or options.ALL:
                     writer.write(answer)
                     for l in answer:
                         if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', (1,'ICMP',l[IP].ttl,l[ICMP].type,l[ICMP].code,l[IPerror].dst))
+                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen= seen + ? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
                         elif l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', [1,'UDP',l[IP].ttl,l[UDP].sport,'',l[IP].src])
+                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen= seen + ? WHERE ip = ?', [1,'UDP',l[IP].ttl,1,1,l[IP].src])
                 writer.close()
         counter += concurrent
 
-##TCP, Syn scan from port 53
+##TCP, Syn scan from port cb.tcpsourceport 
 if options.TCP or options.ALL:
     counter = 0
     while counter < total:
@@ -211,15 +264,15 @@ if options.TCP or options.ALL:
                     break
                 else:
                     print "TCPport: %s" % (str(TCPport))
-                    ans,unans=sr(IP(dst=TARGETS)/TCP(sport=53,dport=TCPport),inter=cb.inter,retry=cb.retry,timeout=cb.timeout)
+                    ans,unans=sr(IP(dst=TARGETS)/TCP(sport=cb.tcpsourceport,dport=TCPport),inter=cb.inter,retry=cb.retry,timeout=cb.timeout)
                 writer = PcapWriter(pcapfile, append=True)
                 for answer in ans:
                     writer.write(answer)
                     for l in answer:
                         if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', (1,'ICMP',l[IP].ttl,l[ICMP].type,l[ICMP].code,l[IPerror].dst))
+                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
                         elif l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', [1,'TCP',l[IP].ttl,l[TCP].sport,l[TCP].flags,l[IP].src])
+                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'TCP',l[IP].ttl,1,1,l[IP].src])
                 writer.close()
         counter += concurrent
 
@@ -241,9 +294,9 @@ if options.DNS or options.ALL:
                 writer.write(answer)
                 for l in answer:
                     if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                        cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', (1,'ICMP',l[IP].ttl,l[ICMP].type,l[ICMP].code,l[IPerror].dst))
+                        cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
                     elif l[IP].src != cb.scannerip:
-                        cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', [1,'DNS',l[IP].ttl,l[UDP].sport,'',l[IP].src])
+                        cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'DNS',l[IP].ttl,1,1,l[IP].src])
             writer.close()
         counter += concurrent
 
@@ -267,9 +320,9 @@ if options.IKE or options.ALL:
                         writer.write(answer)
                         for l in answer:
                             if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                                cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', (1,'ICMP',l[IP].ttl,l[ICMP].type,l[ICMP].code,l[IPerror].dst))
+                                cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
                             elif l[IP].src != cb.scannerip:
-                                cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', [1,'IKE',l[IP].ttl,l[UDP].sport,l[ISAKMP].next_payload,l[IP].src])
+                                cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'IKE',l[IP].ttl,1,1,l[IP].src])
                     writer.close()
         counter += concurrent
 
@@ -292,13 +345,14 @@ if options.SNMP or options.ALL:
                     writer.write(answer)
                     for l in answer:
                         if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', (1,'ICMP',l[IP].ttl,l[ICMP].type,l[ICMP].code,l[IPerror].dst))
+                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
                         elif l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,info1=?,info2=? WHERE ip = ?', [1,'SNMP',l[IP].ttl,l[UDP].sport,str(l[SNMP].community),l[IP].src])
+                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'SNMP',l[IP].ttl,1,1,l[IP.src]])
                 writer.close()
         counter += concurrent
 # Automate logging our scan.
-with open(cb.timestamp + ".barentsz.log", 'w') as log:
+with open(PREFIX + "barentsz.log", 'a') as log:
+    log.write("--- ")
     log.write("started: " + starttime)
     log.write("\nended: " + str(datetime.now()))
     log.write("\ninter: " + str(cb.inter) + "\nretry: " + str(cb.retry) + "\ntimeout: " + str(cb.timeout) + "\nconcurrent: " + str(concurrent))
@@ -314,3 +368,5 @@ with open(cb.timestamp + ".barentsz.log", 'w') as log:
     if options.IKE or options.ALL:
         log.write("\nISAKMPports: " + ",".join(str(x) for x in cb.ISAKMPports))
     log.write("\n")
+
+print  "To view results, do something like: sqlite3 --header " + PREFIX + "barentsz.db ' select * from ips where alive = 1;'"
