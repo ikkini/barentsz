@@ -184,7 +184,7 @@ con = lite.connect(database)
 with con:
     cur = con.cursor()
 
-    # ips should be unique
+    # ips should be unique, added check for existing table
     cur.execute("CREATE TABLE IF NOT EXISTS ips(ip STRING UNIQUE, alive BOOLEAN default 0, info STRING, ttl INT, type STRING, iperror INT default 0, seen INT default 0)")
     # XXX with Timer():
     # if cb.targets_iter exists, it takes precendence
