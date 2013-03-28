@@ -185,6 +185,9 @@ with con:
     cur = con.cursor()
 
     # ips should be unique, added check for existing table
+    # XXX I suddenly realised that a "seen" counter makes no sense.
+    # we will only have "seen" an ip once, because of the "alive" filter.
+    # perhaps replace with timestamp?
     cur.execute("CREATE TABLE IF NOT EXISTS ips(ip STRING UNIQUE, alive BOOLEAN default 0, info STRING, ttl INT, type STRING, iperror INT default 0, seen INT default 0)")
     # XXX with Timer():
     # if cb.targets_iter exists, it takes precendence
