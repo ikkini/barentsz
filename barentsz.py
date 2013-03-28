@@ -297,7 +297,7 @@ if options.DNS or options.ALL:
                     if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
                         cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP','errorip:' + l[IPerror].src,l[IP].ttl,1,1,l[IPerror].dst])
                     elif l[IP].src != cb.scannerip:
-                        cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'DNS','rcode:' + l[DNS]rcode,l[IP].ttl,0,1,l[IP].src])
+                        cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'DNS','rcode:' + l[DNS].rcode,l[IP].ttl,0,1,l[IP].src])
             writer.close()
         counter += concurrent
 
