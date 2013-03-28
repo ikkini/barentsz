@@ -184,7 +184,7 @@ with con:
     cur = con.cursor()
 
     # ips should be unique
-    cur.execute("CREATE TABLE ips(ip STRING UNIQUE, alive BOOLEAN default 0, ttl INT, type STRING, iperror INT default 0, seen INT default 0)")
+    cur.execute("CREATE TABLE ips(ip STRING UNIQUE, alive BOOLEAN default 0, info STRING, ttl INT, type STRING, iperror INT default 0, seen INT default 0)")
     # XXX with Timer():
     # if cb.targets_iter exists, it takes precendence
     if cb.targets_iter:
@@ -220,9 +220,9 @@ if options.ICMP or options.ALL:
                     writer.write(answer)
                     for l in answer:
                         if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen= seen + ? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
+                            cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP','type:' str(ICMPtype) + 'errorip:' + l[IPerror].src,l[IP].ttl,1,1,l[IPerror].dst])
                         elif l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen= seen + ? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IP].src])
+                            cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen= seen + ? WHERE ip = ?', [1,'ICMP','type:' str(ICMPtype), l[IP].ttl,0,1,l[IP].src])
                 writer.close()
         counter += concurrent
 
@@ -245,9 +245,9 @@ if options.UDP or options.ALL:
                     writer.write(answer)
                     for l in answer:
                         if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen= seen + ? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
+                            cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP','dport:' str(UDPport) + 'errorip:' + l[IPerror].src,l[IP].ttl,1,1,l[IPerror].dst])
                         elif l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen= seen + ? WHERE ip = ?', [1,'UDP',l[IP].ttl,1,1,l[IP].src])
+                            cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'UDP','dport:'+ str(UDPport),l[IP].ttl,0,1,l[IP].src])
                 writer.close()
         counter += concurrent
 
@@ -270,13 +270,13 @@ if options.TCP or options.ALL:
                     writer.write(answer)
                     for l in answer:
                         if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
+                            cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP','dport:' + str(TCPport) + 'errorip:' + l[IPerror].src,l[IP].ttl,1,1,l[IPerror].dst])
                         elif l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'TCP',l[IP].ttl,1,1,l[IP].src])
+                            cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'TCP','dport:'+ str(TCPport),l[IP].ttl,0,1,l[IP].src])
                 writer.close()
         counter += concurrent
 
-## DNS query (for localhost)
+## DNS query (for 127.0.0.1)
 if options.DNS or options.ALL:
     counter = 0
     while counter < total:
@@ -287,16 +287,16 @@ if options.DNS or options.ALL:
             if len(TARGETS) == 0:
                 break
             else:
-                print "DNS query: %s" % ('localhost',)
+                print "DNS query: %s" % ('127.0.0.1',)
                 ans,unans=sr(IP(dst=TARGETS)/UDP(sport=53,dport=53)/DNS(rd=1,qd=DNSQR(qname='localhost')),inter=cb.inter,retry=cb.retry,timeout=cb.timeout)
             writer = PcapWriter(pcapfile, append=True)
             for answer in ans:
                 writer.write(answer)
                 for l in answer:
                     if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                        cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
+                        cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP','errorip:' + l[IPerror].src,l[IP].ttl,1,1,l[IPerror].dst])
                     elif l[IP].src != cb.scannerip:
-                        cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'DNS',l[IP].ttl,1,1,l[IP].src])
+                        cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'DNS','rcode:' + l[DNS]rcode,l[IP].ttl,0,1,l[IP].src])
             writer.close()
         counter += concurrent
 
@@ -320,9 +320,9 @@ if options.IKE or options.ALL:
                         writer.write(answer)
                         for l in answer:
                             if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                                cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
+                                cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP','dport:' + str(ISAKMPport) + 'errorip:' + l[IPerror].src,l[IP].ttl,1,1,l[IPerror].dst])
                             elif l[IP].src != cb.scannerip:
-                                cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'IKE',l[IP].ttl,1,1,l[IP].src])
+                                cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'IKE','dport:' + str(ISAKMPport),l[IP].ttl,0,1,l[IP].src])
                     writer.close()
         counter += concurrent
 
@@ -345,9 +345,9 @@ if options.SNMP or options.ALL:
                     writer.write(answer)
                     for l in answer:
                         if l.haslayer(IPerror) and l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP',l[IP].ttl,1,1,l[IPerror].dst])
+                            cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'ICMP',l[IPerror].src,l[IP].ttl,1,1,l[IPerror].dst])
                         elif l[IP].src != cb.scannerip:
-                            cur.execute('UPDATE ips SET alive=?,type=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'SNMP',l[IP].ttl,1,1,l[IP.src]])
+                            cur.execute('UPDATE ips SET alive=?,type=?,info=?,ttl=?,iperror=?,seen=? WHERE ip = ?', [1,'SNMP','community:' + str(SNMPcommunity),l[IP].ttl,0,1,l[IP.src]])
                 writer.close()
         counter += concurrent
 # Automate logging our scan.

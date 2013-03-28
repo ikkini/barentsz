@@ -1,5 +1,5 @@
 # set UNREAD to False to prove you have read this file.
-UNREAD = False
+UNREAD = True
 
 # Function to support timestamps
 from datetime import datetime
@@ -8,7 +8,7 @@ timestamp = datetime.now().strftime("%Y%m%d.%H%M%S")
 # You can define targets either in CIDR + a list, or as an iteration.
 # Comment out targets_iter if you are not using it, or your target range
 # will be overwritten by it!
-targets = ['172.26.164.149/29',]
+targets = ['10.0.0.1/32',]
 targets_iter = False
 #targets_iter = ['192.168.1.1', '192.168.1.66']
 
