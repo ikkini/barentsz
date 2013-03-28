@@ -1,5 +1,6 @@
-#!/opt/local/bin/python2.7
+#!/usr/bin/env python
 
+##!/opt/local/bin/python2.7
 # The line above is macOS specific (YMMV). 
 # Replace it with the line below if you have the right python as an environmental setting: 
 ##!/usr/bin/env python
